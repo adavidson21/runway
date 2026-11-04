@@ -73,7 +73,7 @@ test('lanes by area: longest match wins, Other for the rest', () => {
 test('lanes by Epic: an Epic with Features is a lane, Features without one go to No Epic', () => {
   const d = pulled(result(ITEMS()), ITER, { ...SRC, lanes: 'epic' });
   assert.deepEqual(d.lanes.map(l => l.title), ['Docs Portal', 'No Epic']);
-  assert.deepEqual(d.items.map(i => i.title).sort(), ['Alerting rework', 'Content migration', 'Elsewhere', 'Search cutover', 'Docs Portal']);
+  assert.deepEqual(d.items.map(i => i.title).sort(), ['Alerting rework', 'Content migration', 'Docs Portal', 'Elsewhere', 'Search cutover']);
   const epic = d.items.find(i => i.ado.type === 'Epic');
   assert.deepEqual([epic.milestone, epic.start, epic.end, epic.laneKey], [true, '2027-03-31', '2027-03-31', 'epic:1'], 'the Epic is the lane, and its target date a milestone');
   const noDate = pulled(result(ITEMS().map(x => (x.id === 1 ? { ...x, targetDate: null } : x))), ITER, { ...SRC, lanes: 'epic' });
