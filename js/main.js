@@ -812,7 +812,7 @@ if (window.WorkshopTheme && WorkshopTheme.onChange) WorkshopTheme.onChange(() =>
 ws.on('online', () => { if (v.waiting) { v.waiting = false; store.load().then(() => route(ui.pendingRoute || v.mapId || '')); } pending.load().then(() => pending.pickup()).catch(() => {}); });
 ws.data.subscribe('index', () => store.reload('index'));
 ws.data.subscribe('pending', () => pending.load().catch(() => {}));
-ws.data.subscribe('handoffs', () => pending.pickup(), { app: 'home' });
+for (const app of ['home', 'agents']) ws.data.subscribe('handoffs', () => pending.pickup(), { app });
 document.addEventListener('visibilitychange', () => { if (document.hidden) store.flush(); });
 window.addEventListener('beforeunload', e => { if (store.hasPending()) { store.flush(); e.preventDefault(); } });
 

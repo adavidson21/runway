@@ -7,7 +7,7 @@ Runs on its own at https://runway.alexisdavidson.org and inside Workshop at `/ap
 ## Using it
 
 - **Roadmaps:** the list. New roadmap, Import Markdown, or start from the example.
-- **Pending assignment** (top of the list, when there is something in it): features, bugs and other thoughts captured on Workshop's Home (`p ...` in quick capture). **Assign** picks a roadmap, a lane and optionally an item to sit under; it lands there unscheduled, in the Unscheduled tray. A capture that names a roadmap (`p wiki edge: ...`) skips Pending and goes straight to that roadmap's tray. Ideas show in their own color.
+- **Pending assignment** (top of the list, when there is something in it): features, bugs and other thoughts captured on Workshop's Home (`p ...` in quick capture). **Assign** picks a roadmap, a lane and optionally an item to sit under; it lands there unscheduled, in the Unscheduled tray. A capture that names a roadmap (`p docs portal: ...`) skips Pending and goes straight to that roadmap's tray. Ideas show in their own color.
 - **Levels:** an item can sit under another: epic, then feature, story and task (four levels). In the outline, indent a `- ` line under an item; in the panel, pick **Under**. Each level has its own color (an item's own color wins). On the timeline, items with no parent and no children share rows as before; each epic gets its own rows, one group per level under it. Moving an item to another lane takes everything under it along.
 - **Split, Outline, Timeline:** the outline and the timeline are two views of one roadmap. Editing either updates the other.
 - **Timeline:** drag a bar to move it (also between lanes), drag an edge to change its start or end, double-click a lane to add an item there. Click a lane name to fold it. Items with no dates wait in the Unscheduled tray; drag one onto the timeline.
@@ -52,7 +52,7 @@ sprint: 2027-01-06, 2 weeks    the first day of any sprint, and the length
 goal: S1 | Content moved, old pages redirect
 goal: S4 | Search on the new index
 
-## Wiki Edge
+## Docs Portal
 - Content migration | S1-S3
 - Search cutover | S4 | after: Content migration
 - * Launch | S5
@@ -84,7 +84,7 @@ App id `runway`. All collections are version 1 and follow Workshop's `docs/data-
 | `pending` | Ideas waiting for a roadmap: `{id, title, notes, date, from}` ([pending-item](schemas/pending-item.schema.json)). |
 | `taken` | Captures already handled, so each is taken once: `{id: '<app>:<offer id>', to: 'pending' or a roadmap id}` ([taken-item](schemas/taken-item.schema.json)). |
 
-Captures: Home's `handoffs` collection (read only), offers with `to: 'runway'`, `accepted: true` and payload `{kind: 'idea', map?}` (Workshop `docs/handoffs.md`). Runway reads them when it loads and when they change.
+Captures: the `handoffs` collections of Home and Dispatch (read only), offers with `to: 'runway'`, `accepted: true` and payload `{kind: 'idea', map?}` (Workshop `docs/handoffs.md`). Runway reads them when it loads and when they change.
 
 Files (through `ws.files`): `exports/<id>.md`, written only when you click Save to Workshop folder.
 

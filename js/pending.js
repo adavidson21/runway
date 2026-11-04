@@ -1,7 +1,7 @@
 /* Pending: ideas captured elsewhere that wait for a roadmap. No DOM, so Node tests drive it with a fake `ws`.
 
-   Home's quick capture (Workshop, docs/hub.md) sends a feature, bug or other thought for a roadmap as an offer
-   in Home's own `handoffs` collection: to 'runway', payload {kind: 'idea', map?: <roadmap id>}, accepted: true.
+   Home's quick capture or the Dispatch hub (Workshop, docs/hub.md) sends a feature, bug or other thought for a roadmap as an offer
+   in that app's own `handoffs` collection: to 'runway', payload {kind: 'idea', map?: <roadmap id>}, accepted: true.
    The person accepted it where they typed it, so Runway takes it with no second click:
      - with a `map` that is in the roadmap list: a new unscheduled item in that roadmap (its Unscheduled tray).
      - otherwise: an idea on the Pending page, until it is assigned to a roadmap, a lane and optionally an item
@@ -14,7 +14,7 @@
    Runway never writes another app's data. */
 import { APP, VERSION, cleanItem, newId, nextOrder, parentChoices, validMapId } from './model.js';
 
-export const SENDERS = { home: 'Home' };
+export const SENDERS = { home: 'Home', agents: 'Dispatch' };
 const isDay = s => typeof s === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s);
 const blank = (name) => ({ schema: `${APP}.${name}`, version: VERSION, rev: 0, items: [], deleted: {} });
 

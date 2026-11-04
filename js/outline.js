@@ -5,7 +5,7 @@
      start: 2027-01-04
      sprint: 2027-01-06, 2 weeks
 
-     ## Wiki Edge
+     ## Docs Portal
      - Content migration | S1-S3
      - Search cutover | S4 | after: Content migration
      - * Launch | S5
