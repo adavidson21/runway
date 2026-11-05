@@ -17,7 +17,8 @@ test('summary: the roadmaps as capture targets for ideas, matching docs/summarie
 
 test('sendersFrom: senders of ideas come from manifests, with Home and Dispatch as the fallback', () => {
   const apps = [{ id: 'home', name: 'Home', handoffs: { sends: ['runway', 'notes'] } }, { id: 'notes', name: 'Notes', handoffs: { sends: [] } }, { id: 'runway', name: 'Runway', handoffs: { sends: ['runway'] } }];
-  assert.deepEqual(sendersFrom(apps), { home: 'Home' });
+  assert.deepEqual(sendersFrom(apps), { home: 'Home', agents: 'Dispatch' });
+  assert.deepEqual(sendersFrom([{ id: 'other', name: 'Other', handoffs: { sends: ['runway'] } }]), { home: 'Home', agents: 'Dispatch', other: 'Other' });
   assert.deepEqual(sendersFrom([]), SENDERS);
 });
 
