@@ -102,6 +102,7 @@
     "shared/people.js",
     "shared/summary.js",
     "shared/sw-register.js",
+    "shared/teams.js",
     "shared/theme.js",
     "shared/themes.css",
     "shared/ui.css",
