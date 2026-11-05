@@ -15,6 +15,13 @@
 import { APP, VERSION, cleanItem, newId, nextOrder, parentChoices, validMapId } from './model.js';
 
 export const SENDERS = { home: 'Home', agents: 'Dispatch' };
+/* Who sends Runway ideas, from the manifests on this Workshop site (ws.apps.list(); Workshop docs/handoffs.md,
+   Senders): every app whose handoffs.sends lists runway, as {id: name}. The built-in list when there is no app
+   list (Runway on its own site) or no app names Runway. */
+export function sendersFrom(apps, self = APP, fallback = SENDERS) {
+  const found = (Array.isArray(apps) ? apps : []).filter(a => a && a.id !== self && a.handoffs && Array.isArray(a.handoffs.sends) && a.handoffs.sends.includes(self));
+  return found.length ? Object.fromEntries(found.map(a => [a.id, a.name || a.id])) : { ...fallback };
+}
 const isDay = s => typeof s === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s);
 const blank = (name) => ({ schema: `${APP}.${name}`, version: VERSION, rev: 0, items: [], deleted: {} });
 
